@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Homepage</title>
+    <style>
+      h1, h2 {
+        text-align: center;
+      }
+
+      img {
+        height: 360px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      body {
+        font-family: monospace;
+        font-size: 18px;
+      }
+
+      #product-image {
+        height: 300px;
+        width: 300px;
+      }
+
+      #product-section {
+        text-align: center;
+      }
+
+      p {
+        max-width: 1000px;
+        text-align: left;
+        margin: 0 auto;
+      }
+
+      #order-section {
+        text-align: center;
+        border: solid;
+        border-width: 1px;
+        max-width: 350px;
+        margin: 0 auto;
+        margin-top: 20px;
+      }
+
+      #buy-button {
+        font-size: 23px;
+        background-color: #0b142e;
+        color: white;
+        border-radius: 20px;
+        margin: 20px;
+      }
+
+      input {
+        margin: 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>The Phone Shop</h1>
+
+    <img src="/static/ThePhoneShop Banner.png" >
+
+    <div id="product-section">
+      <h1>{{product['name']}}</h1>
+      <img id="product-image" src={{product['image']}}>
+
+      <h2>Description</h2>
+      <p>{{product['desc']}}</p>
+    </div>
+
+    <div id="order-section">
+      <h2>Order</h2>
+
+      <form action='/browse-products/product-page/receipt' method="post">
+        <label for="name">Name</label><br>
+        <input type="text" name="name"><br>
+  
+        <label for="email">Email</label><br>
+        <input type="email" name="email"><br>
+  
+        <label for="address">Address</label><br>
+        <input type="text" name="address"><br>
+  
+        <label for="card">Card Number</label><br>
+        <input type="number" name="card"><br>
+
+        <input type="hidden" name="product-name" value="{{product['name']}}">
+        <input type="hidden" name="product-price" value="{{product['price']}}">
+  
+        <input id="buy-button" type="submit" value="Buy">
+      </form>
+      
+    </div>
+    
+
+  </body>
+
+</html>

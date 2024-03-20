@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Browse Page</title>
+    <style>
+      h1, h2 {
+        text-align: center;
+      }
+
+      img {
+        height: 360px;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      body {
+        font-family: monospace;
+        font-size: 18px;
+      }
+
+      input {
+        font-size: 23px;
+        background-color: #0b142e;
+        color: white;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 20px;
+      }
+
+      #product-image {
+        height: 250px;
+        width: 250px;
+      }
+
+      #products {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      #product {
+        border: solid;
+        border-width: 1px;
+        margin: 10px;
+      }
+
+      #product-details {
+        text-align: center;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>The Phone Shop</h1>
+
+    <img src="/static/ThePhoneShop Banner.png" >
+
+    <h2>Products</h2>
+    
+    <div id="products">
+
+      {% for product in products %}
+        <div id="product">
+          <img id="product-image" src={{product['image']}}>
+
+          <div id="product-details">
+            {{product['name']}}<br>
+            {{product['price']}}
+          </div>
+
+          <form action='/browse-products/product-page' method="post">
+            <input type="hidden" name="image" value="{{product['image']}}">
+            <input type="hidden" name="name" value="{{product['name']}}">
+            <input type="hidden" name="price" value="{{product['price']}}">
+            <input type="hidden" name="desc" value="{{product['desc']}}">
+            <input type="submit" value="Buy">
+          </form>
+          
+        </div>
+      
+      {% endfor %}
+      
+    </div>
+
+
+  </body>
+
+</html>
